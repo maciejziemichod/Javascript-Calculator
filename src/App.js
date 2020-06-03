@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import Display from "./components/Display";
-import Button from "./components/Button";
+import ButtonsPanel from "./components/ButtonsPanel";
 import "./App.css";
-
-// used for adding proper borders of buttons
-const border = {
-  borderTop: "solid #3b5155 1px",
-  borderRight: "solid #3b5155 1px",
-  borderBottom: "solid #3b5155 1px",
-  borderLeft: "solid #3b5155 1px",
-};
 
 class App extends Component {
   constructor(props) {
@@ -20,143 +12,10 @@ class App extends Component {
   }
 
   render() {
-    // used for adding proper borders of buttons
-    const {
-      borderTop: bT,
-      borderRight: bR,
-      borderBottom: bB,
-      borderLeft: bL,
-    } = border;
-
     return (
       <div className="calculator">
         <Display display={this.state.display} />
-        <div className="buttons">
-          <Button
-            text="AC"
-            id="clear"
-            border={{ borderBottom: bB, borderRight: bR, borderTop: bT }}
-            class="button-clear"
-          />
-          <Button
-            text="/"
-            id="divide"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderLeft: bL,
-              borderTop: bT,
-            }}
-          />
-          <Button
-            text="X"
-            id="multiply"
-            border={{ borderBottom: bB, borderLeft: bL, borderTop: bT }}
-          />
-          <Button
-            text="7"
-            id="seven"
-            border={{ borderBottom: bB, borderRight: bR, borderTop: bT }}
-          />
-          <Button
-            text="8"
-            id="eight"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="9"
-            id="nine"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="-"
-            id="subtract"
-            border={{ borderBottom: bB, borderTop: bT, borderLeft: bL }}
-          />
-
-          <Button
-            text="4"
-            id="four"
-            border={{ borderBottom: bB, borderRight: bR, borderTop: bT }}
-          />
-          <Button
-            text="5"
-            id="five"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="6"
-            id="six"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="+"
-            id="add"
-            border={{ borderBottom: bB, borderTop: bT, borderLeft: bL }}
-          />
-          <Button
-            text="1"
-            id="one"
-            border={{ borderBottom: bB, borderRight: bR, borderTop: bT }}
-          />
-          <Button
-            text="2"
-            id="two"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="3"
-            id="three"
-            border={{
-              borderBottom: bB,
-              borderRight: bR,
-              borderTop: bT,
-              borderLeft: bL,
-            }}
-          />
-          <Button
-            text="0"
-            id="zero"
-            border={{ borderRight: bR, borderTop: bT }}
-            class="button-zero"
-          />
-          <Button
-            text="."
-            id="decimal"
-            border={{ borderRight: bR, borderTop: bT, borderLeft: bL }}
-          />
-          <Button
-            text="="
-            id="equals"
-            border={{ borderTop: bT, borderLeft: bL }}
-            class="button-equal"
-          />
-        </div>
+        <ButtonsPanel />
       </div>
     );
   }
