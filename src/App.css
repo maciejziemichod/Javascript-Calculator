@@ -7,6 +7,11 @@ button {
   border: none;
 }
 
+button:focus {
+  outline: none;
+  border: #d31c63 1px solid !important;
+}
+
 .calculator {
   margin: 7rem auto 1rem auto;
   height: 28rem;
@@ -61,7 +66,8 @@ button {
   grid-row-end: 6;
 }
 
-.button-equal:hover {
+.button-equal:hover,
+.button-equal:focus {
   border: #90abaf solid 1px !important;
 }
 
