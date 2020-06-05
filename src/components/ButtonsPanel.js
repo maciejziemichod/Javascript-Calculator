@@ -1,13 +1,14 @@
 import React from "react";
 import Button from "./Button";
 
-export default function ButtonsPanel() {
+export default function ButtonsPanel(props) {
   // used for adding proper borders of buttons
   const borderStyle = "solid #3b5155 1px";
 
   return (
     <div className="buttons-panel">
       <Button
+        handleAction={props.handleClear}
         text="AC"
         id="clear"
         border={{
@@ -37,6 +38,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="7"
         id="seven"
         border={{
@@ -46,6 +48,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="8"
         id="eight"
         border={{
@@ -56,6 +59,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="9"
         id="nine"
         border={{
@@ -76,6 +80,7 @@ export default function ButtonsPanel() {
       />
 
       <Button
+        handleAction={props.handleNumbers}
         text="4"
         id="four"
         border={{
@@ -85,6 +90,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="5"
         id="five"
         border={{
@@ -95,6 +101,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="6"
         id="six"
         border={{
@@ -114,6 +121,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="1"
         id="one"
         border={{
@@ -123,6 +131,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="2"
         id="two"
         border={{
@@ -133,6 +142,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="3"
         id="three"
         border={{
@@ -143,6 +153,7 @@ export default function ButtonsPanel() {
         }}
       />
       <Button
+        handleAction={props.handleNumbers}
         text="0"
         id="zero"
         border={{ borderRight: borderStyle, borderTop: borderStyle }}

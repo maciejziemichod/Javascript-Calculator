@@ -7,15 +7,41 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: 0,
+      value: 0,
+      display: "0",
     };
+    this.handleNumbers = this.handleNumbers.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
+
+  handleClear() {
+    this.setState({ value: 0, display: "0" });
+  }
+
+  handleNumbers(e) {
+    const number = e.target.innerHTML;
+    // if it starts with 0
+    if (this.state.display === "0") {
+      this.setState((state) => ({
+        display: number,
+      }));
+    } else {
+      this.setState((state) => ({
+        display: state.display + number,
+      }));
+    }
+  }
+
+  handleDecimal(e) {}
 
   render() {
     return (
       <div className="calculator">
         <Display display={this.state.display} />
-        <ButtonsPanel />
+        <ButtonsPanel
+          handleClear={this.handleClear}
+          handleNumbers={this.handleNumbers}
+        />
       </div>
     );
   }
@@ -27,19 +53,6 @@ export default App;
 
 // Example: https://codepen.io/freeCodeCamp/pen/wgGVVX
 // design https://uidesigndaily.com/posts/photoshop-calculator-day-319
-
-// User Story #1: My calculator should contain a clickable element containing an = (equal sign) with a corresponding id="equals".
-
-// User Story #2: My calculator should contain 10 clickable elements containing one number each from 0-9, with the following
-// corresponding IDs: id="zero", id="one", id="two", id="three", id="four", id="five", id="six", id="seven", id="eight", and id="nine".
-
-// User Story #3: My calculator should contain 4 clickable elements each containing one of the 4 primary mathematical operators
-// with the following corresponding IDs: id="add", id="subtract", id="multiply", id="divide".
-
-// User Story #4: My calculator should contain a clickable element containing a . (decimal point) symbol with a corresponding
-// id="decimal".
-
-// User Story #5: My calculator should contain a clickable element with an id="clear".
 
 // User Story #6: My calculator should contain an element to display values with a corresponding id="display".
 
@@ -78,3 +91,12 @@ export default App;
 
 // Immediate Execution Logic: 11.5
 // Formula/Expression Logic: 32.5
+
+// User Story #1: My calculator should contain a clickable element containing an = (equal sign) with a corresponding id="equals".
+// User Story #2: My calculator should contain 10 clickable elements containing one number each from 0-9, with the following
+// corresponding IDs: id="zero", id="one", id="two", id="three", id="four", id="five", id="six", id="seven", id="eight", and id="nine".
+// User Story #3: My calculator should contain 4 clickable elements each containing one of the 4 primary mathematical operators
+// with the following corresponding IDs: id="add", id="subtract", id="multiply", id="divide".
+// User Story #4: My calculator should contain a clickable element containing a . (decimal point) symbol with a corresponding
+// id="decimal".
+// User Story #5: My calculator should contain a clickable element with an id="clear".
