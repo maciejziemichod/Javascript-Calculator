@@ -160,6 +160,7 @@ export default function ButtonsPanel(props) {
         class="button-zero"
       />
       <Button
+        handleAction={props.handleDecimal}
         text="."
         id="decimal"
         border={{

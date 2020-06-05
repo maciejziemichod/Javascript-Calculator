@@ -12,6 +12,7 @@ class App extends Component {
     };
     this.handleNumbers = this.handleNumbers.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleDecimal = this.handleDecimal.bind(this);
   }
 
   handleClear() {
@@ -20,7 +21,7 @@ class App extends Component {
 
   handleNumbers(e) {
     const number = e.target.innerHTML;
-    // if it starts with 0
+    // if it starts with 0 it doesn't allow to begin with multiple of them
     if (this.state.display === "0") {
       this.setState((state) => ({
         display: number,
@@ -32,7 +33,13 @@ class App extends Component {
     }
   }
 
-  handleDecimal(e) {}
+  handleDecimal() {
+    // checks whether there is a decimal point
+    if (this.state.display.split("").includes(".")) {
+      return;
+    }
+    this.setState((state) => ({ display: state.display + "." }));
+  }
 
   render() {
     return (
@@ -41,6 +48,7 @@ class App extends Component {
         <ButtonsPanel
           handleClear={this.handleClear}
           handleNumbers={this.handleNumbers}
+          handleDecimal={this.handleDecimal}
         />
       </div>
     );
