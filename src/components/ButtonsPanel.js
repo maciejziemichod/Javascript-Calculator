@@ -19,6 +19,7 @@ export default function ButtonsPanel(props) {
         class="button-clear"
       />
       <Button
+        handleAction={props.handleOperators}
         text="/"
         id="divide"
         border={{
@@ -29,6 +30,7 @@ export default function ButtonsPanel(props) {
         }}
       />
       <Button
+        handleAction={props.handleOperators}
         text="X"
         id="multiply"
         border={{
@@ -70,6 +72,7 @@ export default function ButtonsPanel(props) {
         }}
       />
       <Button
+        handleAction={props.handleOperators}
         text="-"
         id="subtract"
         border={{
@@ -112,6 +115,7 @@ export default function ButtonsPanel(props) {
         }}
       />
       <Button
+        handleAction={props.handleOperators}
         text="+"
         id="add"
         border={{

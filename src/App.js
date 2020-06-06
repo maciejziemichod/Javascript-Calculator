@@ -9,23 +9,28 @@ class App extends Component {
     this.state = {
       value: 0,
       display: "0",
+      operator: "",
     };
     this.handleNumbers = this.handleNumbers.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
+    this.handleOperators = this.handleOperators.bind(this);
   }
 
   handleClear() {
-    this.setState({ value: 0, display: "0" });
+    this.setState({ value: 0, display: "0", operator: "" });
   }
 
   handleNumbers(e) {
     const number = e.target.innerHTML;
-    // if it starts with 0 it doesn't allow to begin with multiple of them
-    if (this.state.display === "0") {
-      this.setState((state) => ({
+    // if it starts with 0 it doesn't allow to begin with multiple of them or if operator was used
+    if (
+      this.state.display === "0" ||
+      ["+", "-", "/", "X"].includes(this.state.display)
+    ) {
+      this.setState({
         display: number,
-      }));
+      });
     } else {
       this.setState((state) => ({
         display: state.display + number,
@@ -41,6 +46,15 @@ class App extends Component {
     this.setState((state) => ({ display: state.display + "." }));
   }
 
+  handleOperators(e) {
+    const operator = e.target.innerHTML;
+    // sets value
+    if (!["+", "-", "/", "X"].includes(this.state.display)) {
+      this.setState((state) => ({ value: Number.parseFloat(state.display) }));
+    }
+    this.setState({ display: operator, operator });
+  }
+
   render() {
     return (
       <div className="calculator">
@@ -49,7 +63,9 @@ class App extends Component {
           handleClear={this.handleClear}
           handleNumbers={this.handleNumbers}
           handleDecimal={this.handleDecimal}
+          handleOperators={this.handleOperators}
         />
+        <p>{this.state.value}</p>
       </div>
     );
   }
