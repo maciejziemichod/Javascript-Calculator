@@ -20,7 +20,7 @@ button:focus {
   box-shadow: 9px 9px 28px #1d2729, -9px -9px 28px #3b5155;
 }
 
-#Display {
+#display {
   background-color: #ffffff;
   color: #2c3c3f;
   padding: 1rem;
