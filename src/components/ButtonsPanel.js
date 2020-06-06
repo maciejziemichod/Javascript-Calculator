@@ -174,6 +174,7 @@ export default function ButtonsPanel(props) {
         }}
       />
       <Button
+        handleAction={props.handleEquals}
         text="="
         id="equals"
         border={{ borderTop: borderStyle, borderLeft: borderStyle }}

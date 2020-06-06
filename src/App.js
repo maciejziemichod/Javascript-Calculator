@@ -15,6 +15,7 @@ class App extends Component {
     this.handleClear = this.handleClear.bind(this);
     this.handleDecimal = this.handleDecimal.bind(this);
     this.handleOperators = this.handleOperators.bind(this);
+    this.handleEquals = this.handleEquals.bind(this);
   }
 
   handleClear() {
@@ -55,6 +56,28 @@ class App extends Component {
     this.setState({ display: operator, operator });
   }
 
+  handleEquals() {
+    let { value, display, operator } = this.state;
+    display = Number.parseFloat(display);
+    switch (operator) {
+      case "+":
+        value = value + display;
+        break;
+      case "-":
+        value = value - display;
+        break;
+      case "X":
+        value = value * display;
+        break;
+      case "/":
+        value = value / display;
+        break;
+      default:
+        break;
+    }
+    this.setState({ display: value.toString(), value });
+  }
+
   render() {
     return (
       <div className="calculator">
@@ -64,8 +87,8 @@ class App extends Component {
           handleNumbers={this.handleNumbers}
           handleDecimal={this.handleDecimal}
           handleOperators={this.handleOperators}
+          handleEquals={this.handleEquals}
         />
-        <p>{this.state.value}</p>
       </div>
     );
   }
