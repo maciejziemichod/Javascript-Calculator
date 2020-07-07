@@ -7,9 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0,
       display: "0",
-      operator: "",
     };
     this.handleNumbers = this.handleNumbers.bind(this);
     this.handleClear = this.handleClear.bind(this);
@@ -19,16 +17,13 @@ class App extends Component {
   }
 
   handleClear() {
-    this.setState({ value: 0, display: "0", operator: "" });
+    this.setState({ display: "0" });
   }
 
   handleNumbers(e) {
     const number = e.target.innerHTML;
     // if it starts with 0 it doesn't allow to begin with multiple of them or if operator was already used
-    if (
-      this.state.display === "0" ||
-      ["+", "-", "/", "X"].includes(this.state.display)
-    ) {
+    if (this.state.display === "0") {
       this.setState({
         display: number,
       });
@@ -41,7 +36,7 @@ class App extends Component {
 
   handleDecimal() {
     // checks whether there is a decimal point
-    if (this.state.display.split("").includes(".")) {
+    if (this.state.display.includes(".")) {
       return;
     }
     this.setState((state) => ({ display: state.display + "." }));
@@ -49,33 +44,48 @@ class App extends Component {
 
   handleOperators(e) {
     const operator = e.target.innerHTML;
-    // sets value
-    if (!["+", "-", "/", "X"].includes(this.state.display)) {
-      this.setState((state) => ({ value: Number.parseFloat(state.display) }));
+    const { display } = this.state;
+    let newDisplay = display;
+
+    if (operator === "-") {
+      if (
+        display.endsWith("+-") ||
+        display.endsWith("X-") ||
+        display.endsWith("/-")
+      ) {
+        newDisplay = newDisplay.slice(0, newDisplay.length - 2) + "-";
+      } else if (display.endsWith("-")) {
+        newDisplay = newDisplay.slice(0, newDisplay.length - 1) + "+";
+      } else {
+        newDisplay = newDisplay + "-";
+      }
+    } else {
+      if (
+        display.endsWith("+-") ||
+        display.endsWith("X-") ||
+        display.endsWith("/-")
+      ) {
+        newDisplay = newDisplay.slice(0, newDisplay.length - 2) + operator;
+      } else if (
+        display.endsWith("+") ||
+        display.endsWith("-") ||
+        display.endsWith("X") ||
+        display.endsWith("/")
+      ) {
+        newDisplay = newDisplay.slice(0, newDisplay.length - 1) + operator;
+      } else {
+        newDisplay = newDisplay + operator;
+      }
     }
-    this.setState({ display: operator, operator });
+
+    this.setState({ display: newDisplay });
   }
 
   handleEquals() {
-    let { value, display, operator } = this.state;
-    display = Number.parseFloat(display);
-    switch (operator) {
-      case "+":
-        value = value + display;
-        break;
-      case "-":
-        value = value - display;
-        break;
-      case "X":
-        value = value * display;
-        break;
-      case "/":
-        value = value / display;
-        break;
-      default:
-        break;
-    }
-    this.setState({ display: value.toString(), value });
+    let { display } = this.state;
+    display = display.replace("X", "*");
+    const result = eval(display).toString();
+    this.setState({ display: result });
   }
 
   render() {
