@@ -1,6 +1,8 @@
 # Javascript Calculator
 
-## Calculator uses immediate execution logic
+## Calculator uses formula logic
+
+[Codepen](https://codepen.io/maciejziemichod/pen/ZEQxMVP)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
